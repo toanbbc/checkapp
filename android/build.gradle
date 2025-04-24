@@ -10,6 +10,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url '/Users/nguyenxuantoan/Downloads/checkflutter/modulevnelife/build/host/outputs/repo'
+        }
+
+        maven { url 'https://storage.googleapis.com/download.flutter.io' }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
@@ -19,3 +24,13 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url '/Users/nguyenxuantoan/Downloads/checkflutter/modulevnelife/build/host/outputs/repo'
+        }
+        maven { url 'https://storage.googleapis.com/download.flutter.io' }
+    }
+}

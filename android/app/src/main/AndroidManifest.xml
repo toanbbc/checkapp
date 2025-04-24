@@ -22,5 +22,13 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".CustomFlutterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true" />
     </application>
 </manifest>
