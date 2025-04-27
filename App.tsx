@@ -15,7 +15,9 @@ import {
   Text,
   useColorScheme,
   NativeModules,
+  NativeEventEmitter,
   View,
+  Platform,
 } from 'react-native';
 
 import {
@@ -380,7 +382,17 @@ var jsondemo = {
 };
 const openFlutterScreen = () => {
   // Gọi phương thức openFlutterActivity từ FlutterModule
-  FlutterModule.openFlutterActivity(JSON.stringify(jsondemo));
+  if (Platform.OS === 'android') {
+    FlutterModule.openFlutterActivity(JSON.stringify(jsondemo));
+  } else if (Platform.OS === 'ios') {
+    const eventEmitter = new NativeEventEmitter(NativeModules.FlutterBridge);
+    eventEmitter.addListener('FlutterResultEvent', (data) => {
+      console.log('Received data from Flutter:', data);
+    });
+    NativeModules.FlutterBridge.presentFlutter(JSON.stringify(jsondemo));
+
+
+  }
   // FlutterModule.showToast();
 };
 type SectionProps = PropsWithChildren<{
@@ -399,12 +411,30 @@ function App(): React.JSX.Element {
   const safePadding = '5%';
 
   return (
-    <View style={backgroundStyle}>
+
+    <View style={styles.container}>
+      <Text style={styles.title}>Demo React Native App</Text>
       <Button title='Check' onPress={openFlutterScreen}></Button>
+      <Button title="Mở Flutter" />
     </View>
   );
 }
 
 
 
+
 export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EDF1F5', // Màu nền
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 20,
+    color: '#333',
+  },
+});
