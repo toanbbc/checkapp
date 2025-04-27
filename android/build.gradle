@@ -11,7 +11,7 @@ buildscript {
         google()
         mavenCentral()
         maven {
-            url '/Users/nguyenxuantoan/Downloads/checkflutter/modulevnelife/build/host/outputs/repo'
+            url "$rootDir/fluttersdk"
         }
 
         maven { url 'https://storage.googleapis.com/download.flutter.io' }
@@ -29,7 +29,7 @@ allprojects {
         google()
         mavenCentral()
         maven {
-            url '/Users/nguyenxuantoan/Downloads/checkflutter/modulevnelife/build/host/outputs/repo'
+          url "$rootDir/fluttersdk"
         }
         maven { url 'https://storage.googleapis.com/download.flutter.io' }
     }
